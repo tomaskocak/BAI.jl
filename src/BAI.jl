@@ -1,5 +1,5 @@
 module BAI
 
-# Write your package code here.
+include("reducers.jl")
 
 end
