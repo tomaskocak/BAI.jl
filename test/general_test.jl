@@ -1,6 +1,6 @@
-using BAI
-using Test
-using LinearAlgebra
+# using BAI
+# using Test
+# using LinearAlgebra
 
 tolerance = 1e-13
 
@@ -27,3 +27,13 @@ for i in 1:length(lambda)
 end
 @test norm(BAI.smoothness(lambda, laplacian) - smoothness) < tolerance
 @test norm(BAI.objective(mu, omega, lambda) - objective) < tolerance
+
+B = BAI.Bandit([1; 2; 4], 0.0, zeros(3, 3), 0.0)
+BA = BAI.create_bandit_problem([1; 2; 4])
+BB = BAI.create_bandit_problem([1; 2; 4], 0)
+BC = BAI.create_bandit_problem([1; 2; 4], 0, zeros(3, 3), 0)
+
+@test B.mu == BA.mu && B.mu == BB.mu && B.mu == BC.mu 
+@test B.epsilon == BA.epsilon && B.epsilon == BB.epsilon && B.epsilon == BC.epsilon
+@test B.laplacian == BA.laplacian && B.laplacian == BB.laplacian && B.laplacian == BC.laplacian
+@test B.R == BA.R && B.R == BB.R && B.R == BC.R

@@ -1,6 +1,6 @@
-using BAI
-using Test
-using LinearAlgebra
+# using BAI
+# using Test
+# using LinearAlgebra
 
 tolerance = 1e-14
 
@@ -35,7 +35,8 @@ mu = [1.2, 3.4, 5.6, 7.8]
 omega = [0.1, 0.4, 0.3, 0.2]
 i, j = 2, 3
 epsilon = 0.01
-mu_tilde = [1.2, 4.337142857142857, 7.8]
+
+mu_tilde = [1.2, 4.338571428571429, 7.8]
 @test norm(BAI.reduce_mu(mu, omega, i, j, epsilon) - mu_tilde) < tolerance
 
 # testing reduce_laplacian
