@@ -207,7 +207,7 @@ function response_gamma(setting::Setting, i::Int64, j::Int64, gamma::Real)::Arra
     mu_t = reduce_mu(setting.mu, setting.omega, i, j, setting.epsilon)
 
     A = (O_t + 2gamma * L_t)
-    lambda_gamma = inv(A' * A) * A' * (O_t * mu_t + 2gamma * setting.epsilon * L_t_j)
+    lambda_gamma = inv(A' * A) * A' * (O_t * mu_t - 2gamma * setting.epsilon * L_t_j)  # changed to - before last term, check if it is correct at the moment
     lambda = recover_lambda(lambda_gamma, i, j, setting.epsilon)
     return copy(lambda)
 end
